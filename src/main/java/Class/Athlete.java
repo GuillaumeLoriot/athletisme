@@ -3,7 +3,7 @@ package Class;
 public class Athlete {
     String nom;
     String prenom;
-    Integer age;
+    int age;
     String pays;
     String equipe;
 
