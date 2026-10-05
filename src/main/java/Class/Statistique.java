@@ -1,5 +1,7 @@
 package Class;
 
+import java.text.DecimalFormat;
+
 public class Statistique {
 
     public static void statistiquesEpreuve(Epreuve nom){
@@ -17,11 +19,14 @@ public class Statistique {
         for (double score: Epreuve.resultats.values()){
             ecartT=ecartT+Math.pow(score-moy,2);
         }
+        DecimalFormat df = new DecimalFormat("#.##");
         ecartT=Math.pow(ecartT/(double) Epreuve.resultats.size(),0.5);
         System.out.println(Epreuve.nom+": ");
-        System.out.println(Epreuve.nom+": ");
+        System.out.println("Minimum :"+min);
+        System.out.println("Maximum :"+max);
+        System.out.println("Moyenne :"+df.format(moy));
+        System.out.println("Ecart-Type :"+df.format(ecartT));
     }
 
-    private int Ma() {
-    }
+
 }

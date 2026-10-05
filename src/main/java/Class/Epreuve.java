@@ -1,6 +1,7 @@
 package Class;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Epreuve {
 static String nom;
@@ -22,8 +23,14 @@ public Epreuve(String nom, String type, TypeClassement sensTri){
         this.resultats.put(ath,score);
     }
     }
-    String[] classement(){
-    String[] result= new String[this.resultats.size()];
+    Athlete[] classement() {
+        Athlete[] result = new Athlete[this.resultats.size()];
+        for (Map.Entry<Athlete, Double> entry : this.resultats.entrySet()) {
+            // entry.getValue- entry.getKey();
+
+
+    }
+
     return result;
     }
 }
