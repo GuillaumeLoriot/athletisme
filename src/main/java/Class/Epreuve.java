@@ -3,11 +3,11 @@ package Class;
 import java.util.HashMap;
 
 public class Epreuve {
-String nom;
-String type;
-String unite;
-TypeClassement sensTri;
-HashMap<Athlete,Double> Map;
+static String nom;
+static String type;
+static String unite;
+static TypeClassement sensTri;
+static HashMap<Athlete,Double> Map;
 
 public Epreuve(String nom, String type, TypeClassement sensTri){
     this.nom=nom;
