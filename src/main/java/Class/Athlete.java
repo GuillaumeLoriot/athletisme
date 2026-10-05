@@ -7,14 +7,25 @@ public class Athlete {
     String pays;
     String equipe;
 
-    Athlete(String nom, String prenom) {
+    Athlete(String nom, String prenom, Integer age, String pays, String equipe) {
         this.nom = nom;
         this.prenom = prenom;
-    }
-
-    void completerInfo(Integer age, String pays, String equipe) {
         this.age = age;
         this.pays = pays;
         this.equipe = equipe;
+    }
+
+    void modifierInfos(Integer age, String pays, String equipe) {
+        this.age = age;
+        this.pays = pays;
+        this.equipe = equipe;
+    }
+
+    String nomComplet() {
+        return this.prenom + " " + this.nom;
+    }
+
+    String ficheComplete() {
+        return this.prenom + " " + this.nom + " (" + this.pays + ", " + this.equipe + ")";
     }
 }
