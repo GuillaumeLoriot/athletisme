@@ -28,7 +28,7 @@ public class Competition {
 
     };
 
-    public HashMap afficherResultatsEpreuve(Epreuve nomEpreuve){
+    public void afficherResultatsEpreuve(Epreuve nomEpreuve){
 
 
         HashMap<Athlete, Double> resultats = new HashMap<>();
@@ -39,14 +39,14 @@ public class Competition {
 
         for (Map.Entry<Athlete, Double> entry : resultats.entrySet()) {
             Double score = entry.getValue();
-            if (score < min){
-                min = score;
-                resultatsTries.put(entry.getKey(), entry.getValue());
-            }
+                if (score < min){
+                    min = score;
+                    resultatsTries.put(entry.getKey(), entry.getValue());
+                }
 
         }
 
-        return System.out.println(String.valueOf(resultatsTries));
+        System.out.println(resultatsTries);
 
 
     };
