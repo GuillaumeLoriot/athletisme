@@ -5,13 +5,13 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Recherche {
-    public static void rechercherAthletes(ArrayList<Athlete> listeAthletes) {
+    public static ArrayList<String> rechercherAthletes(ArrayList<Athlete> listeAthletes) {
         Scanner scanner = new Scanner(System.in);
         String nomRecherche, prenomRecherche;
         Pattern patternNom, patternPrenom;
-        boolean trouve = false;
+        ArrayList<String> listeAthletesTrouves = new ArrayList<>();
 
-        System.out.println("--- Recherche d'athlètes ---");
+        System.out.println("--- Recherche d'athletes ---");
         System.out.println();
 
         System.out.print("Nom : ");
@@ -19,53 +19,69 @@ public class Recherche {
         System.out.print("Prenom : ");
         prenomRecherche = scanner.nextLine().trim();
 
+        scanner.close();
+
         patternNom = Pattern.compile(nomRecherche, Pattern.CASE_INSENSITIVE);
         patternPrenom = Pattern.compile(prenomRecherche, Pattern.CASE_INSENSITIVE);
 
         // Aucune saisie : recherche annulée
-        if (nomRecherche == "" && prenomRecherche == "") {
-            return;
+        if (nomRecherche.equals("") && prenomRecherche.equals("")) {
+            return listeAthletesTrouves;
         }
 
         // Recherche avec nom et prenom
-        if (nomRecherche != "" && prenomRecherche != "") {
+        if (!nomRecherche.equals("") && !prenomRecherche.equals("")) {
             for (Athlete ath : listeAthletes) {
                 if (patternNom.matcher(ath.nom).find() && patternPrenom.matcher(ath.prenom).find()) {
-                    System.out.println("Nom : " + ath.nom + "     Prenom : " + ath.prenom);
-                    trouve = true;
+                    listeAthletesTrouves.add(ath.nomComplet());
                 }
             }
-            if (!trouve) {
-                System.out.println(("Aucun athlete trouve"));
-            }
-            return;
+            return listeAthletesTrouves;
         }
 
         // Recherche sur le nom uniquement
-        if (nomRecherche != "") {
+        if (!nomRecherche.equals("")) {
             for (Athlete ath : listeAthletes) {
                 // Recherche par nom dans un premier temps
                 if (patternNom.matcher(ath.nom).find()) {
-                    System.out.println("Nom : " + ath.nom + "     Prenom : " + ath.prenom);
-                    trouve = true;
+                    listeAthletesTrouves.add(ath.nomComplet());
                 }
             }
-            if (!trouve) {
-                System.out.println(("Aucun athlete trouve"));
-            }
-            return;
+            return listeAthletesTrouves;
         }
 
         // Recherche sur le prenom uniquement
         for (Athlete ath : listeAthletes) {
-            // Recherche par nom dans un premier temps
             if (patternPrenom.matcher(ath.prenom).find()) {
-                System.out.println("Nom : " + ath.nom + "     Prenom : " + ath.prenom);
-                trouve = true;
+                listeAthletesTrouves.add(ath.nomComplet());
             }
         }
-        if (!trouve) {
-            System.out.println(("Aucun athlete trouve"));
+        return listeAthletesTrouves;
+    }
+
+    public static ArrayList<String> filtrerParPays(ArrayList<Athlete> listeAthletes) {
+        Scanner scanner = new Scanner(System.in);
+        String paysFiltre;
+        ArrayList<String> listeAthletesTrouves = new ArrayList<>();
+
+        System.out.println("--- Filtrer les athletes par pays ---");
+        System.out.println();
+
+        System.out.print("Pays : ");
+        paysFiltre = scanner.nextLine().trim().toLowerCase();
+        scanner.close();
+
+        if (paysFiltre.equals("")) {
+            return listeAthletesTrouves;
         }
+
+        for (Athlete ath : listeAthletes) {
+            if (paysFiltre.equals(ath.pays.toLowerCase())) {
+                listeAthletesTrouves.add(ath.nomComplet());
+            }
+        }
+
+        return listeAthletesTrouves;
     }
 }
+
